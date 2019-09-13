@@ -8,6 +8,7 @@ jobs:
       - run:
           name: Install dependencies
           command: echo "run npm install"
+      - run: echo $test_secret
 
   deploy:
     docker:
