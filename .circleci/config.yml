@@ -1,0 +1,29 @@
+version: 2.0
+
+jobs:
+  build:
+    docker:
+      - image: circleci/node:lts
+    steps:
+      - run:
+          name: Install dependencies
+          command: echo "run npm install"
+
+  deploy:
+    docker:
+      - image: circleci/node:lts
+    steps:
+      - run: echo "pretend to run build"
+      
+workflows:
+  version: 2
+  build-and-deploy:
+    jobs:
+      - build
+      - deploy
+      - deploy:
+          requires:
+            - build
+          filters:
+            branches:
+              only: feature-branch
