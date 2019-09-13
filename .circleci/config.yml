@@ -9,6 +9,8 @@ jobs:
           name: Install dependencies
           command: echo "run npm install"
       - run: echo $test_secret
+      - run: export AZURE_DEVOPS_EXT_PAT=$test_secret
+      - run: echo $AZURE_DEVOPS_EXT_PAT
 
   deploy:
     docker:
