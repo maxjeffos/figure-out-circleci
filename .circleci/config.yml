@@ -4,32 +4,18 @@ jobs:
   build:
     docker:
       - image: circleci/node:lts
-    working_directory: ~/circleci-demo-workflows
     steps:
       - run: echo "pretend to run build"
-      - run:
-          name: Run tests
-          command: echo "pretend to run tests"
 
   deploy:
     docker:
       - image: circleci/node:lts
-    working_directory: ~/circleci-demo-workflows
     steps:
       - run: echo "pretend to run build"
-      - run:
-          name: Deploy
-          command: echo "pretend to deploy"
-
+      
 workflows:
   version: 2
   build-and-deploy:
     jobs:
       - build
-      - deploy:
-          requires:
-            - build
-          filters:
-            branches:
-              only: feature-branch
-
+      - deploy
