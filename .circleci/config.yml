@@ -4,13 +4,19 @@ jobs:
   build:
     docker:
       - image: circleci/node:lts
+    environment:
+      SOME_ENV: "test another var"
     steps:
       - run:
           name: Install dependencies
           command: echo "run npm install"
       - run: echo $test_secret
-      - run: export AZURE_DEVOPS_EXT_PAT=$test_secret
-      - run: echo $AZURE_DEVOPS_EXT_PAT
+      - run:
+          name: double env var
+          command: |
+            export AZURE_DEVOPS_EXT_PAT=$test_secret
+            echo $AZURE_DEVOPS_EXT_PAT
+      - run: echo $SOME_ENV
 
   deploy:
     docker:
