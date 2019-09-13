@@ -6,7 +6,7 @@ jobs:
       - image: circleci/node:lts
     environment:
       SOME_ENV: "test another var"
-      SOME_ENV_2: $test_secret
+      SOME_ENV_2: ${test_secret}
     steps:
       - run:
           name: Install dependencies
