@@ -3,36 +3,23 @@ version: 2.0
 jobs:
   build:
     docker:
-      - image: circleci/ruby:2.4-node
-      - image: circleci/postgres:9.4.12-alpine
+      - image: circleci/node:lts
     working_directory: ~/circleci-demo-workflows
     steps:
-#       - checkout
-
-#       - run: ls -la
       - run: echo "pretend to run build"
-
       - run:
           name: Run tests
           command: echo "pretend to run tests"
 
   deploy:
-    machine:
-        enabled: true
+    docker:
+      - image: circleci/node:lts
     working_directory: ~/circleci-demo-workflows
-#    environment:
-#      HEROKU_APP: "sleepy-refuge-55486"
     steps:
-#       - checkout
+      - run: echo "pretend to run build"
       - run:
-          name: Pretend Deployment
-#          command: bash .circleci/setup-heroku.sh
+          name: Deploy
           command: echo "pretend to deploy"
-      - run:
-          command: |
-            echo "more"
-            echo "pretend"
-            echo "commands"
 
 workflows:
   version: 2
@@ -45,5 +32,4 @@ workflows:
           filters:
             branches:
               only: feature-branch
-
 
