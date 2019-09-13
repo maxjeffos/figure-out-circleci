@@ -6,6 +6,7 @@ jobs:
       - image: circleci/node:lts
     environment:
       SOME_ENV: "test another var"
+      SOME_ENV_2: "test another var 2"
     steps:
       - run:
           name: Install dependencies
@@ -17,6 +18,7 @@ jobs:
             export AZURE_DEVOPS_EXT_PAT=$test_secret
             echo $AZURE_DEVOPS_EXT_PAT
       - run: echo $SOME_ENV
+      - run: echo $SOME_ENV_2
 
   deploy:
     docker:
